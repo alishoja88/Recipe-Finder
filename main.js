@@ -79,7 +79,7 @@ function showFetchDat() {
             return;
         }
 
-        cardElements = [];
+
         content.textContent = "";
 
         recipes.forEach(recipe => {

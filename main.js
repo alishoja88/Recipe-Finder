@@ -1,6 +1,4 @@
-
 const fetchData = async (searchValue) => {
-
     const API_URL = "https://api.edamam.com/api/recipes/v2?type=public"
     const API_ID = "4e7590ad";
     const API_KEY = "01e591526ca055cbc834437f07c2d653";
@@ -12,15 +10,13 @@ const fetchData = async (searchValue) => {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log("hit", data.hits)
         return data.hits;
     } catch (error) {
         console.error('Error fetching recipes:', error);
         return [];
     }
 };
-
-
-
 
 const createRecipeCards = (recipe) => {
 
@@ -77,12 +73,15 @@ function showFetchDat() {
             content.removeChild(card);
         });
 
+        cardElements = [];
         if (recipes.length === 0) {
             content.textContent = "No recipes found.";
             return;
         }
 
-        cardElements = []
+        cardElements = [];
+        content.textContent = "";
+
         recipes.forEach(recipe => {
             const card = createRecipeCards(recipe);
             content.style.display = "flex"
